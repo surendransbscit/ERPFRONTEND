@@ -1,0 +1,62 @@
+.small-typeahead .rbt-input-main {
+    min-height: 30px !important; /* Reduce input height */
+    font-size: 12px !important; /* Smaller text */
+    padding: 4px !important; /* Reduce padding */
+  }
+  
+  .small-typeahead .rbt-menu {
+    font-size: 12px !important; /* Reduce dropdown text size */
+  }
+  
+  .small-typeahead .rbt-input {
+    padding: 4px !important;
+  }
+  
+  .small-typeahead .rbt-menu > .dropdown-item {
+    padding: 4px !important; /* Reduce option padding */
+  }
+
+  .retailer-bg .form-control {
+    background-color: rgb(243, 105, 105) !important;
+  }
+  .wholesale-bg .form-control {
+    background-color: lightgreen !important;
+  }
+
+  .freeze-col {
+    position: sticky;
+    right: 0;
+    background: white;
+    z-index: 3;
+}
+
+.tableHeadFixed {
+  
+    background-color: #f8f9fa !important
+}
+
+  /* Target the select input */
+  .custom-select__control {
+    min-height: 25px !important;
+    font-size: 10px !important;
+  }
+  
+  /* Target the selected value */
+  .custom-select__single-value {
+    font-size: 10px !important;
+  }
+  
+  /* Target dropdown options */
+  .custom-select__menu {
+    font-size: 10px !important;
+    z-index: 9999 !important;
+  }
+  
+  /* Target dropdown indicator (caret icon) */
+  .custom-select__indicator {
+    padding: 3px !important;
+  }
+
+  .MuiPickersPopper-root {
+    overflow: hidden;
+  }

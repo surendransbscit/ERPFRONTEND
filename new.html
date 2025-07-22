@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Test</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Testing Socket.io</h1>
+    <script>
+        const socket = io("https://erp.shiningdawn.in", {
+  path: "/socket_api/",
+  transports: ["websocket"], // Force WebSocket instead of polling
+  secure: true,
+});
+
+        socket.on("connect", () => {
+            console.log("Connected:", socket.id);
+        });
+
+        socket.on("new_estimation_created", (data) => {
+            console.log("New estimation received:", data);
+        });
+    </script>
+</body>
+</html>

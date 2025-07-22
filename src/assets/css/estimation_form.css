@@ -1,0 +1,66 @@
+.small-typeahead .rbt-input-main {
+    min-height: 30px !important; /* Reduce input height */
+    font-size: 12px !important; /* Smaller text */
+    padding: 4px !important; /* Reduce padding */
+  }
+  
+  .small-typeahead .rbt-menu {
+    font-size: 12px !important; /* Reduce dropdown text size */
+  }
+  
+  .small-typeahead .rbt-input {
+    padding: 4px !important;
+  }
+  
+  .small-typeahead .rbt-menu > .dropdown-item {
+    padding: 4px !important; /* Reduce option padding */
+  }
+
+  .retailer-bg .form-control {
+    background-color: rgb(243, 105, 105) !important;
+  }
+  .wholesale-bg .form-control {
+    background-color: lightgreen !important;
+  }
+
+
+
+
+/* Gross Wt */
+
+/* Reduce input field size */
+.input-group.gross_weight input.form-control {
+  height: 29px !important;
+  font-size: 12px !important;
+  padding: 2px 5px !important;
+}
+
+/* Reduce dropdown button size */
+.input-group.gross_weight .btn.dropdown-toggle {
+  height: 29px !important;
+  font-size: 12px !important;
+  padding: 2px 8px !important;
+}
+
+/* Reduce dropdown options size */
+.input-group.gross_weight .dropdown-menu {
+  font-size: 12px !important;
+ 
+}
+
+.input-group.gross_weight .dropdown-item {
+  font-size: 12px !important;
+  padding: 3px 8px !important;
+}
+
+/* Reduce icon size */
+.input-group.gross_weight .btn.dropdown-toggle .icon {
+  font-size: 12px !important;
+ 
+  height: 14px !important;
+}
+
+[class*="dropdown-indicator"]::after {
+  display: none !important;
+  content: none !important;
+}

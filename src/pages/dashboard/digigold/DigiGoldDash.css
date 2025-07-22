@@ -1,0 +1,45 @@
+.heatmap-table {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+  }
+  
+  .heatmap-header, .heatmap-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .heatmap-header span:first-child,
+  .heatmap-row span:first-child {
+    width: 40px;
+    text-align: right;
+  }
+  
+  .heatmap-cell {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+  }
+  
+
+  .heatmap-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .day-label {
+    width: 40px; /* fixed width for alignment */
+  }
+  
+  .heatmap-cells {
+    display: flex;
+    gap: 4px;
+  }
+  

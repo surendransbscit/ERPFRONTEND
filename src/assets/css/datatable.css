@@ -1,0 +1,57 @@
+/* react_tableStyles.css */
+
+/* Table container */
+
+.advance_adj_table,.table
+{
+  white-space: nowrap;
+}
+
+.react_table thead tr th{
+  /* width: 100px !important; */
+  padding: 3px !important;
+  white-space: nowrap; /* Prevents content from breaking into multiple lines */
+}
+.react_table tbody tr td{
+  white-space: nowrap; /* Prevents content from breaking into multiple lines */
+  padding-right: 0rem !important;
+  font-size: 13px !important;
+  padding: 5px !important;
+  /* color: #8094ae; */
+}
+
+.react_tables_wrapper {
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  /* Table styling */
+  .react_table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    justify-content: center;
+    text-align: center !important;
+    border: 0px solid #e1e1e1 !important;
+    table-layout: auto;
+  }
+  
+
+  
+  /* Header styling */
+  .react_table thead tr th{
+    /* background-color: #f4f4f4; */
+    font-weight: bold !important;
+    text-transform: capitalize;
+    font-size: 14px !important;
+    padding-right: 10px !important;
+  }
+  
+  /* Row striping */
+  .react_table tbody tr:nth-child(odd) {
+    /* background-color: #fcfcfc; */
+  }
+  
+
+  
+ 

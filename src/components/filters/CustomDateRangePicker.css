@@ -1,0 +1,36 @@
+/* Custom styles for the DateRangePicker */
+.custom-date-range-picker .rdrCalendarWrapper {
+    margin-top: 0px;
+    width: 243px; /* Set the width for the picker */
+    height: 280px;
+}
+
+.custom-date-range-picker .rdrMonth {
+    width: 100%; /* Ensure each month fits within the container */
+}
+
+.custom-date-range-picker .rdrDateDisplayWrapper {
+    display: none;
+    flex-direction: column; /* Stack the date inputs vertically */
+}
+.custom-date-range-picker .rdrInputRange {
+    display: none;
+}
+
+.custom-date-range-picker .rdrDateDisplayItem {
+    width: 100%; /* Ensure date inputs take full width */
+    margin-bottom: 10px;
+}
+
+.custom-date-range-picker .rdrMonthAndYearWrapper {
+    justify-content: center; /* Center the month and year selector */
+    padding-top : 0px;
+}
+
+.custom-date-range-picker .rdrDayNumber span {
+    font-size: 10px; /* Adjust the font size for the day numbers */
+}
+
+.custom-date-range-picker .rdrDefinedRangesWrapper {
+    width: 140px;  /* Adjust the hover color if needed */
+}

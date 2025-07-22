@@ -1,0 +1,20 @@
+.custom-grid{
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 12px;
+}
+.gross_weight{
+    display: flex;
+}
+
+.text-right {
+    text-align: right;
+  }
+
+  .action_button{
+    float: right;
+  }
+
+.custom-divider {
+    width: 1% !important;
+  }

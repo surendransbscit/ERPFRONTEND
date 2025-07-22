@@ -1,0 +1,57 @@
+/* Center the content */
+.text-center {
+    text-align: center;
+}
+
+/* Align the table within the card */
+.card-inner {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Adjust the spacing for the table */
+.table-head-with-lines .nk-tb-channel,
+.table-head-with-lines .nk-tb-sessions,
+.table-head-with-lines .nk-tb-prev-sessions,
+.table-head-with-lines .nk-tb-change,
+.table-head-with-lines .nk-tb-trend {
+    border-right: 1px solid #e3e3e3;
+    /* Add vertical lines */
+    padding: 8px;
+    text-align: center;
+}
+
+.table-row-with-lines .nk-tb-channel,
+.table-row-with-lines .nk-tb-sessions,
+.table-row-with-lines .nk-tb-prev-sessions,
+.table-row-with-lines .nk-tb-change,
+.table-row-with-lines .nk-tb-trend {
+    border-right: 1px solid #e3e3e3;
+    /* Add vertical lines */
+    padding: 8px;
+    text-align: center;
+}
+
+/* Adjust font-size for icons */
+.fa-sm {
+    font-size: 0.875em;
+}
+
+/* Optional: Add some space between table columns */
+.nk-tb-item {
+    padding: 10px;
+}
+
+/* Remove padding from card title for better alignment */
+.card-title-group {
+    margin-left: 0;
+}
+
+
+.icon-sm {
+    font-size: 0.85rem;
+    margin-right: 5px;
+}
+
+
+

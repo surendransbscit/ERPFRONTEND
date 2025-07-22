@@ -1,0 +1,25 @@
+.table-bordered {
+    table-layout: auto;
+    width: 100%;
+  }
+
+.table-bordered td, .table-bordered th {
+    padding-right: 0rem !important;
+    font-size: 13px !important;
+}
+
+.table-bordered tr th{
+    padding: 10px !important;
+}
+
+.table-bordered tbody tr td{
+    font-size: 13px !important;
+    padding: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.table-bordered tfoot tr td{
+    font-size: 13px !important;
+    padding: 10px !important;
+    padding-bottom: 1px !important;
+}

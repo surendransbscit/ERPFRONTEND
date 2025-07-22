@@ -1,0 +1,351 @@
+import React, { useEffect, useState, useContext } from "react";
+import Content from "../../../layout/content/Content";
+import Head from "../../../layout/head/Head";
+import { useDispatch } from "react-redux";
+import {
+  CancelButton,
+  PreviewCard,
+  SaveButton,
+} from "../../../components/Component";
+import { useForm } from "react-hook-form";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  createPayDevice,
+  getPayDeviceById,
+  updatePayDeviceById,
+} from "../../../redux/thunks/retailMaster";
+import { toastsuccess } from "../../../components/sds-toast-style/toast-style";
+import {
+  Col,
+  Icon,
+  NumberInputField,
+  Row,
+  SwitchInputField,
+  TextInputField,
+} from "../../../components/Component";
+import IsRequired from "../../../components/erp-required/erp-required";
+import ModifiedBreadcrumb from "../../../components/common/breadcrumb/ModifiedBreadCrumb";
+import { useHotkeys } from "react-hotkeys-hook";
+import { WordTransformerContext } from "../../../contexts/WordTransformerContexts";
+
+const PayDeviceForm = () => {
+  const location = useLocation();
+  let title = location?.state?.title;
+  const add = location?.state?.add;
+  const id = location?.state?.id;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    clearErrors,
+    setValue
+  } = useForm();
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const { isLoading: issubmitting, isError } = useSelector(
+    (state) => state.payDeviceReducer
+  );
+  const { payDeviceInfo } = useSelector((state) => state.payDeviceReducer);
+
+  const [deviceName, setDeviceName] = useState();
+  const [deviceSort, setDeviceSort] = useState();
+  const [deviceType, setDeviceType] = useState(1);
+  const [active, setActive] = useState(true);
+  const { transformWord } = useContext(WordTransformerContext);
+
+  const postData = async () => {
+    const adddata = {
+      device_name: deviceName,
+      device_sort: deviceSort,
+      device_status: active,
+      device_type: deviceType
+    };
+    try {
+      await dispatch(createPayDevice(adddata)).unwrap();
+      toastsuccess(deviceName + " Added successfully");
+      navigate(`${process.env.PUBLIC_URL}/master/paydevice/list`);
+    } catch (error) {
+      console.error(error);
+    }
+
+  };
+
+  const postAndCreateNew = async () => {
+    const adddata = {
+      device_name: deviceName,
+      device_sort: deviceSort,
+      device_status: active,
+      device_type: deviceType
+    };
+
+    await dispatch(createPayDevice(adddata));
+    if (isError === false) {
+      toastsuccess("Pay Device Added successfully");
+      setDeviceName("");
+      setDeviceSort("");
+      setDeviceType(1);
+      setActive(true);
+    }
+  };
+
+  useEffect(() => {
+    id !== undefined && dispatch(getPayDeviceById(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    payDeviceInfo != undefined &&
+      (setDeviceName(payDeviceInfo?.device_name),
+        setDeviceSort(payDeviceInfo?.device_sort),
+        setActive(payDeviceInfo?.device_status),
+        setDeviceType(payDeviceInfo?.device_type),
+        reset());
+  }, [payDeviceInfo, reset]);
+
+  const putData = async () => {
+    const adddata = {
+      device_name: deviceName,
+      device_sort: deviceSort,
+      device_status: active,
+      device_type: deviceType
+    };
+    const reduxData = {
+      id: id,
+      putData: adddata,
+    };
+
+    await dispatch(updatePayDeviceById(reduxData));
+    if (isError === false) {
+      toastsuccess("pay device Edited successfully");
+      navigate(`${process.env.PUBLIC_URL}/master/paydevice/list`);
+    }
+  };
+
+  useEffect(() => {
+    if (add === undefined && id === undefined) {
+      navigate(`${process.env.PUBLIC_URL}/master/paydevice/list`);
+    }
+  }, [add, id, navigate]);
+
+  useHotkeys("ctrl+s", (event) => {
+    event.preventDefault();
+    if (id !== undefined) {
+      handleSubmit(putData)();
+    } else {
+      handleSubmit(postData)();
+    }
+  },{
+    enableOnFormTags: true, // Enable hotkeys inside input fields
+    preventDefault: true, // Prevent default browser Save
+  });
+
+
+  return (
+    <React.Fragment>
+      <Head title={title ? title : "Pay Device"} />
+      <Content>
+        <PreviewCard className="h-100">
+          <Row
+            lg={12}
+            className={"form-control-sm"}
+            style={{ marginTop: "10px" }}
+          >
+            <Col md={5}>
+              <ModifiedBreadcrumb></ModifiedBreadcrumb>
+            </Col>
+            <Col md={2}></Col>
+            {add !== undefined && (
+              <Col md={5} className="text-right flex">
+                <SaveButton
+                  disabled={issubmitting}
+                  size="md"
+                  color="primary"
+                  onClick={handleSubmit((data) =>
+                    postAndCreateNew(data, "saveAndNew")
+                  )}
+                >
+                  {issubmitting ? "Saving" : "Save & New"}
+                </SaveButton>
+
+                <SaveButton
+                  disabled={issubmitting}
+                  size="md"
+                  color="primary"
+                  onClick={handleSubmit((data) =>
+                    postData(data, "saveAndClose")
+                  )}
+                >
+                  {issubmitting ? "Saving" : "Save[ctrl+s]"}
+                </SaveButton>
+
+                <CancelButton
+                  disabled={issubmitting}
+                  color="danger"
+                  size="md"
+                  onClick={() =>
+                    navigate(`${process.env.PUBLIC_URL}/master/paydevice/list`)
+                  }
+                >
+                  Cancel
+                </CancelButton>
+              </Col>
+            )}
+            {id !== undefined && (
+              <Col md={5} className="text-right flex">
+                <SaveButton
+                  disabled={issubmitting}
+                  size="md"
+                  color="primary"
+                  onClick={handleSubmit(putData)}
+                >
+                  {issubmitting ? "Saving" : "Save[ctrl+s]"}
+                </SaveButton>
+
+                <CancelButton
+                  disabled={issubmitting}
+                  color="danger"
+                  size="md"
+                  onClick={() =>
+                    navigate(`${process.env.PUBLIC_URL}/master/paydevice/list`)
+                  }
+                >
+                  Cancel
+                </CancelButton>
+              </Col>
+            )}
+          </Row>
+          <div className="custom-grid">
+            <Row md={12} className="form-group row g-4">
+              <Col md="1">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="deviceType">
+                    Type
+                  </label>
+                </div>
+              </Col>
+              <Col md="3">
+                <div className="form-group">
+                  <ul className="custom-control-group g-3 align-center flex-wrap">
+                    <li>
+                      <div className="custom-control custom-control-sm custom-radio">
+                        <input
+                          id="Wallet"
+                          type="radio"
+                          name={"deviceType"}
+                          value={"1"}
+                          className="custom-control-input"
+                          checked={deviceType == "1"}
+                          onChange={(e) => {
+                            setDeviceType(e.target.value);
+                          }}
+                        />
+                        <label className="custom-control-label" htmlFor="Wallet">
+                          Wallet
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="custom-control custom-control-sm  custom-radio">
+                        <input
+                          id="Bank"
+                          type="radio"
+                          value={"2"}
+                          name={"deviceType"}
+                          className="custom-control-input "
+                          checked={deviceType == "2"}
+                          onChange={(e) => {
+                            setDeviceType(e.target.value);
+                          }}
+                        />
+                        <label className="custom-control-label" htmlFor="Bank">
+                          Bank
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </Col>
+            </Row>
+
+            <Row md={12} className="form-group row g-4">
+              <Col lg="1">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="deviceName">
+                    Name <IsRequired />
+                  </label>
+                </div>
+              </Col>
+              <Col lg="3">
+                <div className="form-group">
+                  <TextInputField
+                    register={register}
+                    isRequired={true}
+                    id={"deviceName"}
+                    placeholder="Device Name"
+                    value={deviceName}
+                    SetValue={(value) => {
+                      setDeviceName(transformWord(value));
+                      clearErrors("deviceName");
+                    }}
+                    message={errors.deviceName && " Device name is Required"}
+                  />
+                </div>
+              </Col>
+            </Row>
+            <Row md={12} className="form-group row g-4">
+              <Col lg="1">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="deviceSort">
+                    Sort <IsRequired />
+                  </label>
+                </div>
+              </Col>
+              <Col lg="3">
+                <div className="form-group">
+                  <NumberInputField
+                    placeholder="Device Sort"
+                    id={"deviceSort"}
+                    value={deviceSort}
+                    isRequired={true}
+                    setValue={setValue}
+                    register={register}
+                    SetValue={(value) => {
+                      setDeviceSort(value);
+                      clearErrors("deviceSort");
+                    }}
+                    message={errors.deviceSort && "Device Sort is Required"}
+                  />
+
+                </div>
+              </Col>
+            </Row>
+
+
+            <Row md={12} className="form-group row g-4">
+              <Col lg="1">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="active">
+                    Active
+                  </label>
+                </div>
+              </Col>
+              <Col lg="3">
+                <SwitchInputField
+                  register={register}
+                  id={"active"}
+                  checked={active}
+                  SetValue={setActive}
+                  name={"active"}
+                />
+              </Col>
+            </Row>
+          </div>
+        </PreviewCard>
+      </Content>
+    </React.Fragment>
+  );
+};
+
+export default PayDeviceForm;

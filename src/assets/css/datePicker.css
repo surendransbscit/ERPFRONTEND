@@ -1,0 +1,37 @@
+.react-datepicker__portal, .react-datepicker__wrapper {
+    opacity: 1 !important; /* Remove any transparency */
+  }
+  
+  /* Custom styles for input field */
+  .react-datepicker__input-container input.form-control.date-picker {
+    background-color: #fff !important; /* White background */
+    color: #000 !important; /* Black text color for good contrast */
+    border: 1px solid #ccc; /* Border for input field */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px; /* Padding inside the input field */
+  }
+  
+  /* Calendar pop-up styles */
+  .react-datepicker__header,
+  .react-datepicker__month,
+  .react-datepicker__day {
+    background-color: #fff !important; /* White background for calendar */
+    opacity: 1 !important; /* Ensure no opacity */
+    border-radius: 4px; /* Rounded corners */
+  }
+  
+  /* Styles for dropdowns */
+  .react-datepicker__month-dropdown,
+  .react-datepicker__year-dropdown {
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Custom styles for selected date in calendar */
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected {
+    background-color: #007bff !important; /* Highlight selected date */
+    color: #fff !important; /* White text for selected date */
+  }
